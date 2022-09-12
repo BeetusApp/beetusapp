@@ -1,3 +1,6 @@
+[![beetusapp CI](https://github.com/BeetusApp/beetusapp/actions/workflows/build.yml/badge.svg)](https://github.com/BeetusApp/beetusapp/actions/workflows/build.yml)
+
+[beetusapp.com](http://beetusapp.com)
 # beetusapp
 Diabetes tracking software developed by diabetic(s) for diabetics
 
