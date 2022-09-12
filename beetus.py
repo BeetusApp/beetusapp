@@ -55,21 +55,27 @@ def select_all_glucose(conn):
         y.append(row[0])
     return y
 
-connection = create_connection(DATABASE)
 
-date = select_all_date(connection)
-glucose = select_all_glucose(connection)
 # write entries to DB
 
 
 
 #Graph and display readings
-fig = px.line(x=date, y=glucose, template="plotly_dark",
-                 labels={
-                     "x": "Date and Time",
-                     "y": "Blood Glucose Reading",
-                 },
-                title="Blood Glucose Chart")
-fig.show()
+def generate_graph(date_reading, gluclose_reading):
+    'test'
+    fig = px.line(x=date_reading, y=gluclose_reading, template="plotly_dark",
+                    labels={
+                        "x": "Date and Time",
+                        "y": "Blood Glucose Reading",
+                    },
+                    title="Blood Glucose Chart")
+    fig.show()
+
+connection = create_connection(DATABASE)
+
+date = select_all_date(connection)
+glucose = select_all_glucose(connection)
+
+generate_graph(date, glucose)
 # Write reading to HTML page
 #fig.write_html("graph.html")
