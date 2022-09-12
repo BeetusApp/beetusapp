@@ -14,7 +14,7 @@ def pytest(session):
 @nox.session
 def lint(session):
     "test"
-    session.install("-r", REQUIREMENTS)
+    session.install("pylint")
     session.run("pylint", "--recursive=y", "beetus.py", "beetusapp", "tests")
 
 
@@ -28,7 +28,7 @@ def flake8(session):
 @nox.session
 def black(session):
     "test"
-    session.install("-r", REQUIREMENTS)
+    session.install("black")
     session.run("black", ".")
 
 
