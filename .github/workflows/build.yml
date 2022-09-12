@@ -1,0 +1,23 @@
+# .github/workflows/build.yaml
+name: beetusapp CI
+
+on:
+  push:
+    branches: [ main ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout sources
+        uses: actions/checkout@v2
+
+      - name: Install dependencies
+        run: |
+          python3 -m pip install nox
+
+      - name: Run nox
+        run: nox
