@@ -14,7 +14,7 @@ def pytest(session):
 @nox.session
 def lint(session):
     "test"
-    session.install("pylint")
+    session.install("-r", REQUIREMENTS)
     session.run("pylint", "--recursive=y", "beetus.py", "beetusapp", "tests")
 
 
