@@ -15,6 +15,7 @@ def pytest(session):
 def lint(session):
     "test"
     session.install("-r", REQUIREMENTS)
+    session.install("pylint")
     session.run("pylint", "--recursive=y", "beetus.py", "beetusapp", "tests")
 
 
