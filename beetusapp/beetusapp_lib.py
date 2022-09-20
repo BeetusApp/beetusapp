@@ -87,8 +87,9 @@ def generate_graph(date_reading, gluclose_reading):
 def add_entry(conn, date, time, glucose_reading, notes):
     "This Function adds an entry to the database"
     cur = conn.cursor()
-    sql = ("INSERT into entries (date, time, glucose, notes)"
-    f"VALUES (\"{date}\", \"{time}\", \"{glucose_reading}\", \"{notes}\")"
+    sql = (
+        "INSERT into entries (date, time, glucose, notes)"
+        f"VALUES (\"{date}\", \"{time}\", \"{glucose_reading}\", \"{notes}\")"
     )
     print(sql)
     cur.execute(sql)
