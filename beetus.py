@@ -1,5 +1,4 @@
 "test"
-from crypt import methods
 from flask import Flask, request, jsonify, render_template
 import beetusapp.beetusapp_lib
 
@@ -24,6 +23,7 @@ def generate_graph():
         return "Graph Generated"
     if request.method == 'GET':
         return app.send_static_file("graph.html")
+    return "TEST"
 
 @app.route("/entry", methods = ['GET','POST'])
 def post_entry():
@@ -45,6 +45,7 @@ def post_entry():
 
         rows = cur.fetchall()
         return rows
+    return "TEST"
 
 @app.route('/')
 def test():
@@ -65,6 +66,7 @@ def entry_form():
         beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
         connection.close()
         return 'ENTRY SUBMITTED'
+    return "TEST"
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
