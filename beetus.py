@@ -37,7 +37,9 @@ def post_entry():
         time = content['time']
         glucose_reading = content['glucose_reading']
         notes = content['notes']
-        beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
+        beetusapp.beetusapp_lib.add_entry(
+            connection, date, time, glucose_reading, notes
+        )
         connection.close()
         return jsonify(content)
     if request.method == 'GET':
@@ -67,7 +69,9 @@ def entry_form():
         glucose_reading = request.form.get('glucose_reading')
         notes = request.form.get('notes')
         connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
-        beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
+        beetusapp.beetusapp_lib.add_entry(
+            connection, date, time, glucose_reading, notes
+        )
         connection.close()
         return 'ENTRY SUBMITTED'
     return "TEST"
