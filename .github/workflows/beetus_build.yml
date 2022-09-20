@@ -15,7 +15,7 @@ jobs:
     steps:
     - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag ghcr.io/beetusApp/beetusapp:latest 
+      run: docker build . --file Dockerfile --tag ghcr.io/beetusapp/beetusapp:latest 
 
     - name: Login to Github Container Registry
       env:
@@ -23,4 +23,4 @@ jobs:
       run: echo "$CR_PAT" | docker login ghcr.io -u USERNAME --password-stdin
       
     - name: Push image to Github Container Registry
-      run: docker push ghcr.io/beetusApp/beetusapp:latest 
+      run: docker push ghcr.io/beetusapp/beetusapp:latest
