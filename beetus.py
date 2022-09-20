@@ -11,7 +11,8 @@ PATH_GRAPH = "./graph.html"
 
 app = Flask(__name__)
 
-@app.route("/graph", methods = ['GET','POST'])
+
+@app.route("/graph", methods=['GET', 'POST'])
 def generate_graph():
     "Function to generate graph"
     if request.method == 'POST':
@@ -25,7 +26,8 @@ def generate_graph():
         return app.send_static_file("graph.html")
     return "TEST"
 
-@app.route("/entry", methods = ['GET','POST'])
+
+@app.route("/entry", methods=['GET', 'POST'])
 def post_entry():
     "POST to create entry, GET to view entries"
     if request.method == 'POST':
@@ -47,12 +49,14 @@ def post_entry():
         return rows
     return "TEST"
 
+
 @app.route('/')
 def test():
     "Root route"
     return render_template('index.html')
 
-@app.route('/form', methods = ['GET', 'POST'])
+
+@app.route('/form', methods=['GET', 'POST'])
 def entry_form():
     "Root route"
     if request.method == 'GET':
@@ -67,6 +71,7 @@ def entry_form():
         connection.close()
         return 'ENTRY SUBMITTED'
     return "TEST"
+
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
