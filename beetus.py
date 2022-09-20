@@ -1,46 +1,70 @@
 "test"
-from flask import Flask, request, jsonify
+from crypt import methods
+from flask import Flask, request, jsonify, render_template
 import beetusapp.beetusapp_lib
 
 
 DATABASE = "beetus.db"
-connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
-date = beetusapp.beetusapp_lib.select_all_date(connection)
-glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
-beetusapp.beetusapp_lib.generate_graph(date, glucose)
-connection.close()
+PATH_GRAPH = "./graph.html"
 
 # Write reading to HTML page
 
-PATH_GRAPH = "./graph.html"
+
 app = Flask(__name__)
 
+@app.route("/graph", methods = ['GET','POST'])
+def generate_graph():
+    "Function to generate graph"
+    if request.method == 'POST':
+        connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+        date = beetusapp.beetusapp_lib.select_all_date(connection)
+        glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
+        beetusapp.beetusapp_lib.generate_graph(date, glucose)
+        connection.close()
+        return "Graph Generated"
+    if request.method == 'GET':
+        return app.send_static_file("graph.html")
 
-@app.route("/noob")
-def hello_world():
-    "test"
-    # return "<p>Hello, World!</p>"
-    # return url_for('static', filename="graph.html")
-    return app.send_static_file("graph.html")
-
-@app.route("/entry", methods = ['POST'])
+@app.route("/entry", methods = ['GET','POST'])
 def post_entry():
-    "test"
-    content = request.json
-    connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
-    date = content['date']
-    time = content['time']
-    glucose_reading = content['glucose_reading']
-    notes = content['notes']
-    beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
-    connection.close()
-    #return jsonify({"Date":date},{"Time":time},{"Glucose_Reading":glucose_reading}, {"Notes":notes})
-    return jsonify(content)
+    "POST to create entry, GET to view entries"
+    if request.method == 'POST':
+        content = request.json
+        connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+        date = content['date']
+        time = content['time']
+        glucose_reading = content['glucose_reading']
+        notes = content['notes']
+        beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
+        connection.close()
+        return jsonify(content)
+    if request.method == 'GET':
+        connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+        cur = connection.cursor()
+        cur.execute("SELECT * FROM entries")
+
+        rows = cur.fetchall()
+        return rows
 
 @app.route('/')
-def test_root():
+def test():
     "Root route"
-    return 'This is the root page'
+    return render_template('index.html')
+
+@app.route('/form', methods = ['GET', 'POST'])
+def entry_form():
+    "Root route"
+    if request.method == 'GET':
+        return render_template('entry_form.html')
+    if request.method == 'POST':
+        date = request.form.get('date')
+        time = request.form.get('time')
+        glucose_reading = request.form.get('glucose_reading')
+        notes = request.form.get('notes')
+        connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+        beetusapp.beetusapp_lib.add_entry(connection, date, time, glucose_reading, notes)
+        connection.close()
+        return 'ENTRY SUBMITTED'
 
 if __name__ == "__main__":
     app.run(host="0.0.0.0", port=80)
