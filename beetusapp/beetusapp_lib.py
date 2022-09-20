@@ -82,3 +82,13 @@ def generate_graph(date_reading, gluclose_reading):
     )
     fig.show()
     fig.write_html("./static/graph.html")
+
+def add_entry(conn, date, time, glucose_reading, notes):
+    "This Function adds an entry to the database"
+    cur = conn.cursor()
+    sql = f"""
+    INSERT into entries (date, time, glucose, notes) VALUES (\"{date}\", \"{time}\", \"{glucose_reading}\", \"{notes}\")
+    """
+    print(sql)
+    cur.execute(sql)
+    conn.commit()
