@@ -33,6 +33,7 @@ def post_entry():
         time = content['time']
         glucose_reading = content['glucose_reading']
         notes = content['notes']
+        # pylint: disable=E1101:no-member
         beetusapp.beetusapp_lib.add_entry(
             connection, date, time, glucose_reading, notes
         )
@@ -65,6 +66,7 @@ def entry_form():
         glucose_reading = request.form.get('glucose_reading')
         notes = request.form.get('notes')
         connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+        # pylint: disable=E1101:no-member
         beetusapp.beetusapp_lib.add_entry(
             connection, date, time, glucose_reading, notes
         )

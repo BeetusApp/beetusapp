@@ -12,12 +12,7 @@ def add_numbers(num_one, num_two):
 def create_connection(data_base):
     "Function to connect to database"
     conn = None
-    connection_error = None
-    try:
-        conn = sqlite3.connect(data_base)
-    except connection_error as error:
-        print(error)
-
+    conn = sqlite3.connect(data_base)
     return conn
 
 
