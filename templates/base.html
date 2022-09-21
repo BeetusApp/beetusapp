@@ -13,11 +13,69 @@
             border-radius:6px;
             padding-left: 20px;
             padding-right: 20px;
+            width: 10%;
+        }
+        nav {
+            width: 90%;
+        }
+        hr {
+            width: 100%;
+        }
+        input[type=text], select, textarea {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: xx-large;
+        }
+        input[type=number], select, textarea {
+            width: 90%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            resize: vertical;
+            font-size: xx-large;
+        }
+        form label {
+            font-size: xx-large;
+            font-weight: bolder;
+        }
+        input[type=submit] {
+            background-color: #0425aa;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        input[type=submit]:hover {
+            background-color: #09023e;
+        }
+        .container {
+            border-radius: 5px;
+            background-color: #282727;
+            padding: 20px;
+            margin: auto;
+            width: 300px;
+            margin-top: 2%;
+            
+        }
+        .container-entries {
+            border-radius: 5px;
+            background-color: #282727;
+            padding: 20px;
+            margin: auto;
+            width: 95%;
+            margin-top: 2%;
+            float: none;
+            min-width: 50%
+            
         }
         #logo {
             color:white;
-            float: right;
             background-color: black;
+            width: 100%;
         }
 
         body {
@@ -43,16 +101,18 @@
         }
         table {
             background-color:rgb(41, 40, 40);
+            align-self: center;
+            margin: auto;
         }
     </style>
 </head>
 <body>
     <nav>
-        <a href="/">Home</a>
+        <a id="logo" href="/">BeetusApp</a>
         <a href="/entry">View Entries</a>
         <a href="/form">Post Entry</a>
         <a href="/graph">View Graph</a>
-        <a id="logo" href="/">BeetusApp</a>
+        
     </nav>
     <hr>
     <div class="content">

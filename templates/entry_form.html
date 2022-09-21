@@ -1,18 +1,22 @@
 {% extends 'base.html' %}
-
+{% block title %} Entry Form{% endblock %}
 {% block content %}
-    <h1>{% block title %} Entry Form{% endblock %}</h1>
-    <form action="/form" method="POST">
-        <label for="date">Date:</label><br>
-        <input type="text" id="date" name="date" value="2022-09-01"><br><br>
-        <label for="time">Time:</label><br>
-        <input type="text" id="time" name="time" value="8:00am"><br><br>
-        <label for="glucose_reading">Glucose Reading:</label><br>
-        <input type="number" name="glucose_reading" id="glucose_reading" value=150><br><br>
-        <label for="notes">Notes:</label><br>
-        <input type="text" name="notes" id="notes"><br><br>
-        <input type="submit" value="Submit">
-    </form>
+    
+
+
+    <div class="container">
+        <form action="/form" method="POST">
+            <label for="date">Date:</label><br>
+            <input type="text" id="date" name="date" value="2022-09-01"><br><br>
+            <label for="time">Time:</label><br>
+            <input type="text" id="time" name="time" value="8:00am"><br><br>
+            <label for="glucose_reading">Glucose Reading:</label><br>
+            <input type="number" name="glucose_reading" id="glucose_reading" value=150><br><br>
+            <label for="notes">Notes:</label><br>
+            <input type="text" name="notes" id="notes"><br><br>
+            <input type="submit" value="Submit">
+        </form>
+    </div>
 
 
 {% endblock %}

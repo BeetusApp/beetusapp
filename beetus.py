@@ -12,19 +12,15 @@ PATH_GRAPH = "./graph.html"
 app = Flask(__name__)
 
 
-@app.route("/graph", methods=['GET', 'POST'])
+@app.route("/graph", methods=['GET'])
 def generate_graph():
     "Function to generate graph"
-    if request.method == 'POST':
-        connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
-        date = beetusapp.beetusapp_lib.select_all_date(connection)
-        glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
-        beetusapp.beetusapp_lib.generate_graph(date, glucose)
-        connection.close()
-        return "Graph Generated"
-    if request.method == 'GET':
-        return app.send_static_file("graph.html")
-    return "TEST"
+    connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+    date = beetusapp.beetusapp_lib.select_all_date(connection)
+    glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
+    beetusapp.beetusapp_lib.generate_graph(date, glucose)
+    connection.close()
+    return app.send_static_file("graph.html")
 
 
 @app.route("/entry", methods=['GET', 'POST'])
