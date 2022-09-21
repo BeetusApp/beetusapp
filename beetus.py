@@ -6,8 +6,18 @@ import beetusapp.beetusapp_lib
 DATABASE = "beetus.db"
 PATH_GRAPH = "./graph.html"
 
+def generate_new_graph():
+    "Generate new graph"
+    connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
+    date = beetusapp.beetusapp_lib.select_all_date(connection)
+    glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
+    beetusapp.beetusapp_lib.generate_graph(date, glucose)
+    connection.close()
+
 # Write reading to HTML page
 
+# Create graph on boot
+generate_new_graph()
 
 app = Flask(__name__)
 
@@ -15,11 +25,7 @@ app = Flask(__name__)
 @app.route("/graph", methods=['GET'])
 def generate_graph():
     "Function to generate graph"
-    connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
-    date = beetusapp.beetusapp_lib.select_all_date(connection)
-    glucose = beetusapp.beetusapp_lib.select_all_glucose(connection)
-    beetusapp.beetusapp_lib.generate_graph(date, glucose)
-    connection.close()
+    generate_new_graph()
     return app.send_static_file("graph.html")
 
 
