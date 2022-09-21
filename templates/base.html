@@ -9,10 +9,40 @@
             font-size: 3em;
             margin-left: 50px;
             text-decoration: none;
+            background-color: rgb(36, 35, 35);
+            border-radius:6px;
+            padding-left: 20px;
+            padding-right: 20px;
         }
+        #logo {
+            color:white;
+            float: right;
+            background-color: black;
+        }
+
         body {
             background-color: black;
             color: #313aee;
+        }
+        tr:nth-child(even) {background-color: #686565;}
+        th {
+            color: #313aee;
+            font-size: larger;
+            border-radius:6px;
+        }
+        td {
+            padding-left: 20px;
+            padding-right: 20px;
+            
+        }
+        tr {
+            border-radius:6px;
+            font-size: larger;
+            color: white;
+
+        }
+        table {
+            background-color:rgb(41, 40, 40);
         }
     </style>
 </head>
@@ -22,6 +52,7 @@
         <a href="/entry">View Entries</a>
         <a href="/form">Post Entry</a>
         <a href="/graph">View Graph</a>
+        <a id="logo" href="/">BeetusApp</a>
     </nav>
     <hr>
     <div class="content">

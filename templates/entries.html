@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h1>{% block title %} Entries {% endblock %}</h1>
+    <table class="table">
+        <tr>
+            <th>ID</th>
+            <th>Date</th>
+            <th>Time</th>
+            <th>Glucose</th>
+            <th>Notes</th>
+        </tr>
+
+        <!-- here is a for-loop to give us all the socks -->
+        {% for row in rows %}
+        <tr>
+            <td>{{ row[0] }}</td>
+            <td>{{ row[1] }}</td>
+            <td>{{ row[2] }}</td>
+            <td>{{ row[3] }}</td>
+            <td>{{ row[4]}}</td>
+        </tr>
+        {% endfor %}
+    </table>
+
+{% endblock %}
