@@ -48,10 +48,6 @@ def post_entry():
         cur.execute("SELECT * FROM entries")
 
         rows = cur.fetchall()
-        #row_text = '<ul>'
-        #for row in rows:
-        #    row_text += '<li>' + str(row[3]) + '</li>'
-        #row_text += '</ul>'
         return render_template('entries.html', rows=rows)
     return "TEST"
 
