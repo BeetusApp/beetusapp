@@ -6,6 +6,7 @@ import beetusapp.beetusapp_lib
 DATABASE = "beetus.db"
 PATH_GRAPH = "./graph.html"
 
+
 def generate_new_graph():
     "Generate new graph"
     connection = beetusapp.beetusapp_lib.create_connection(DATABASE)
@@ -18,6 +19,7 @@ def generate_new_graph():
 
 # Create graph on boot
 generate_new_graph()
+
 
 app = Flask(__name__)
 
