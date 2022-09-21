@@ -80,7 +80,7 @@ def generate_graph(date_reading, gluclose_reading):
         },
         title="Blood Glucose Chart",
     )
-    #fig.show()
+    # fig.show()
     fig.write_html("./static/graph.html")
 
 
