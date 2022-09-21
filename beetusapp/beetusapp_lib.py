@@ -84,7 +84,7 @@ def add_entry(conn, date, time, glucose_reading, notes):
     cur = conn.cursor()
     sql = (
         "INSERT into entries (date, time, glucose, notes)"
-        f"VALUES (\"{date}\", \"{time}\", \"{glucose_reading}\", \"{notes}\")"
+        f'VALUES ("{date}", "{time}", "{glucose_reading}", "{notes}")'
     )
     print(sql)
     cur.execute(sql)
